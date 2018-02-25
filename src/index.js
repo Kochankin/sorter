@@ -1,12 +1,9 @@
-// функция, которую будем применять
-function addOne(array){
-  return array;
-}
-
-///////////////////////////
 class Sorter {
   constructor() { 
    this.elementStorage = [];
+   this.compareFunction = function(a, b) {
+        return a - b;
+     }
   }
 
   add(element) { 
@@ -26,21 +23,29 @@ class Sorter {
   } 
 
   sort(indices) { 
-    this.compareFunction = function(a, b) {
-        return a - b;
-     }
+    
 
-     // в отдельный массив клады те элементы, что нужно отсортировать
-   var elementsToSort = [];
+    var elementsToSort = [];
+
+    indices.sort(this.compareFunction); // ?
+
     for (var i = 0; i < indices.length; i++){
       elementsToSort.push(this.elementStorage[indices[i]]);
     }  
+    elementsToSort.sort(this.compareFunction);
 
+    for(var i = 0; i < indices.length; i++){
++      this.elementStorage[indices[i]] = elementsToSort[i];
++    }
+   }
+    /*
     // из основного массива убираю эти элементы
     this.elementStorage = this.elementStorage.filter(function(item, i){
       return indices.indexOf(i) === -1; 
     });
-    elementsToSort.sort(this.compareFunction);
+    console.log('elementStorage after deletion = ' + this.elementStorage);
+    
+    console.log('elementsToSort = ' + elementsToSort);
 
     // если все элементы попали в сортировку, возвращаю массив из хранилища
     if (this.elementStorage.length === 0) {
@@ -50,8 +55,8 @@ class Sorter {
       this.elementStorage = elementsToSort.concat(this.elementStorage); 
     }
 
-     return this.elementStorage;
-  }
+     return this.elementStorage;*/
+  
 
   setComparator(compareFunction) {
     this.compareFunction = compareFunction; 
