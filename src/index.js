@@ -24,7 +24,6 @@ class Sorter {
 
   sort(indices) { 
     
-
     var elementsToSort = [];
 
     indices.sort(this.compareFunction); // ?
@@ -34,9 +33,12 @@ class Sorter {
     }  
     elementsToSort.sort(this.compareFunction);
 
-    for(var i = 0; i < indices.length; i++){
-+      this.elementStorage[indices[i]] = elementsToSort[i];
-+    }
+    for (var i = 0; i < indices.length; i++) { 
+      var currentIndex = indices[i];
+      elementsToSort.forEach(function(elem){
+        this.elementStorage[currentIndex] = elem; 
+      });
++   }
    }
     /*
     // из основного массива убираю эти элементы
