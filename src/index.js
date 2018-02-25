@@ -31,6 +31,7 @@ class Sorter {
     for (var i = 0; i < indices.length; i++){
       elementsToSort.push(this.elementStorage[indices[i]]);
     }  
+
     elementsToSort.sort(this.compareFunction);
 
     for (var i = 0; i < indices.length; i++) { 
@@ -38,8 +39,8 @@ class Sorter {
       elementsToSort.forEach(function(elem){
         this.elementStorage[currentIndex] = elem; 
       });
-+   }
-   }
+     }
+  }
     /*
     // из основного массива убираю эти элементы
     this.elementStorage = this.elementStorage.filter(function(item, i){
